@@ -1,10 +1,12 @@
 import "./App.css";
 import LoginPage from "./components/login/login";
+import Counter from "./components/state";
 
 function App() {
   return (
     <div>
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <Counter />
     </div>
   );
 }

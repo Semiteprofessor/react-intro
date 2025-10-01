@@ -4,6 +4,7 @@ export default function LoginPage() {
   const userInfo = {
     firstName: "John",
     lastName: "Doe",
+    age: 30
   };
   return (
     <>
@@ -31,7 +32,7 @@ export default function LoginPage() {
         </form>
       </div>
 
-      <ChildOne info={userInfo} age="30" />
+      <ChildOne info={userInfo}/>
     </>
   );
 }
