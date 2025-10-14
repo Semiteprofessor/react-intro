@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { addTwoNumber } from "./login/child-one/child-login";
 
 // export default function Counter() {
 //   // const [count, setCount] = React.useState(0);
@@ -28,20 +29,32 @@ import React, { useState } from "react";
 //   );
 // }
 
+// export default function Form() {
+//   const [name, setName] = useState("");
 
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     alert(`Submitted: ${name}`);
+//   };
 
-export default function Form() {
-  const [name, setName] = useState("");
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input value={name} onChange={(e) => setName(e.target.value)} />
+//       <button type="submit">Submit</button>
+//     </form>
+//   );
+// }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Submitted: ${name}`);
-  };
+export default function Timer() {
+  const [count, setCount] = useState(0);
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
-      <button type="submit">Submit</button>
-    </form>
-  );
+  useEffect(() => {
+    const timer = setInterval(() => setCount((prev) => prev + 1), 1000);
+
+    console.log(timer);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return <p>Seconds passed: {count}</p>;
 }

@@ -1,13 +1,20 @@
 import React from "react";
 
-const car = {
+export const car = {
   make: "Toyota",
   model: "Corolla",
   year: "2005",
-  move: function () {
+  useState: function () {
     return this.make + " " + this.model;
   },
+  useEffect: function(){
+
+  }
 };
+
+export function addTwoNumber(a, b) {
+  return a + b;
+}
 
 // Object destructuring
 const { make, model, year, move } = car;
