@@ -6,6 +6,9 @@ import Counter from "./components/state";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import UserProfile from "./pages/user-profile";
+import Products from "./pages/products";
+import ProductDetails from "./pages/product-detail";
 
 function App() {
   return (
@@ -14,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/user/:userId" element={<UserProfile />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
       </Routes>
     </div>
   );

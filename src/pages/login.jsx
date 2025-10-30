@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function Login() {
   const userInfo = {
@@ -11,12 +11,28 @@ export default function Login() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     alert(`${firstName} ${lastName} ${email} ${password}`);
   };
+  useEffect(() => {
+    fetch("https://dummyjson.com/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: "emilys",
+        password: "emilyspass",
+        expiresInMins: 30,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setUser(data));
+
+    // console.log(user);
+  }, [user]);
 
   return (
     <>
