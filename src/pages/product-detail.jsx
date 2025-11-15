@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 const ProductDetails = () => {
   const { productId } = useParams();
+    const { theme } = useTheme();
 
   const [products, setProducts] = React.useState([]);
 
@@ -36,7 +38,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div>
+    <div className={theme === "light" ? "light" : "dark"}>
       <img src={product.image} alt="product-image" width={400} />
       <h2>{product.title}</h2>
       <h3>{product.price}</h3>

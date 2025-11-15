@@ -1,19 +1,22 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  gap: 20px;
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.input {
-  display: flex;
-  flex-direction: column;
+body {
+  background: #f6f5f7;
+  font-family: "Montserrat", sans-serif;
 }
 
-input {
-  padding: 15px;
+.light {
+  background-color: #fff;
+  color: #000;
 }
 
-button {
-  padding: 15px;
+.dark {
+  background-color: #2e2e2e;
+  color: #fff;
 }

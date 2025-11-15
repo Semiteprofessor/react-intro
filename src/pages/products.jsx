@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import "./product.css";
 import { Link } from "react-router-dom";
 import ProductDetails from "./product-detail";
+import { useTheme } from "../context/ThemeContext";
 
 const Products = () => {
   const [products, setProducts] = React.useState([]);
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -23,9 +26,14 @@ const Products = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: theme === "light" ? "#fff" : "#2e2e2e",
+        color: theme === "light" ? "#000" : "#fff",
+      }}
+    >
       <div className="container">
-      {products.map((product) => (
+        {products.map((product) => (
           <div className="posts" key={product.id}>
             <img
               src={product.image}
@@ -38,7 +46,7 @@ const Products = () => {
             </Link>
             <p>${product.price}</p>
           </div>
-      ))}
+        ))}
       </div>
     </div>
   );
