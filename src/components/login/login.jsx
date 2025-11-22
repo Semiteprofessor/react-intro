@@ -1,67 +1,56 @@
 import { useState } from "react";
-import ChildOne from "./child-one/child-login";
+import "./login.css";
+import { useAuth } from "../../context/AuthContext";
+// import { registerUser } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
-  const userInfo = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
+const Login = () => {
+  const navigate = useNavigate();
+  const { loginUser } = useAuth();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser(formData);
+    const token = localStorage.getItem("token");
+    console.log("Token from localStorage:", token);
+
+      if (token) {
+        navigate("/");
+      }
   };
-
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    alert(`${firstName} ${lastName} ${email} ${password}`);
-  };
-
   return (
-    <>
-      <div>Welcome to Login Page</div>
-      <div>
-        <form action="" className="form" onSubmit={handleSubmit}>
-          <div className="input">
-            <label htmlFor="">First name</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="">Last name</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="">Email</label>
-            <input
-              type="text"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="">Password</label>
-            <input
-              type="text"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-          <div></div>
-          <button>Submit</button>
+    <div className="login-page">
+      <div className="form">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={formData.email}
+            name="email"
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            value={formData.password}
+            name="password"
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+            placeholder="Password"
+          />
+          <button>Login</button>
+          <p className="message">
+            Not registered? <a href="#">Create an account</a>
+          </p>
         </form>
       </div>
-
-      <ChildOne info={userInfo} />
-    </>
+    </div>
   );
-}
+};
+
+export default Login;

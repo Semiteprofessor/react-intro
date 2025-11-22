@@ -4,7 +4,7 @@ import LoginPage from "./components/login/login";
 import TodoList from "./components/todo";
 import Counter from "./components/state";
 import Home from "./pages/home";
-import Login from "./pages/login";
+import Login from "./components/login/login";
 import Register from "./components/register/Register";
 import UserProfile from "./pages/user-profile";
 import Products from "./pages/products";

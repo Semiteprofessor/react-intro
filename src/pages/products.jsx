@@ -3,27 +3,12 @@ import "./product.css";
 import { Link } from "react-router-dom";
 import ProductDetails from "./product-detail";
 import { useTheme } from "../context/ThemeContext";
+import { useProduct } from "../context/ProductContext";
 
 const Products = () => {
-  const [products, setProducts] = React.useState([]);
 
   const { theme } = useTheme();
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setProducts(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        console.log("Fetch attempt finished");
-      }
-    };
-    fetchProducts();
-  }, []);
+  const { products } = useProduct();
 
   return (
     <div

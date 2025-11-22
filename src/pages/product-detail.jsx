@@ -1,28 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { useProduct } from "../context/ProductContext";
 
 const ProductDetails = () => {
   const { productId } = useParams();
     const { theme } = useTheme();
-
-  const [products, setProducts] = React.useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setProducts(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        console.log("Fetch attempt finished");
-      }
-    };
-    fetchProducts();
-  }, []);
+    const { products } = useProduct();
 
   console.log(products);
 
